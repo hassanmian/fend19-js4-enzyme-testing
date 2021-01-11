@@ -2,132 +2,113 @@ import Button from '../Button'
 import { shallow } from 'enzyme'
 
 describe("Test getSize", () => {
-  it('contains btn-lg when size==lg', () => {
+  it("contains btn-lg class if size==lg", () => {
     const wrapper = shallow(<Button size="lg"/>)
-    expect(wrapper.find('button').hasClass('btn-lg')).toBe(true);
+    expect(wrapper.find("button").hasClass('btn-lg')).toBe(true)
   })
-  it('does not contain btn-lg when size is not sent', () => {
+
+  it("does not contain btn-lg when size is not set", () => {
     const wrapper = shallow(<Button />)
-    expect(wrapper.find('button').hasClass('btn-lg')).not.toBe(true);
+    expect(wrapper.find("button").hasClass('btn-lg')).not.toBe(true)
   })
 })
 
 describe("Test getColorScheme", () => {
-  it("sets has btn-primary when colorScheme==purple", () => {
+  it("has class btn-primary when colorScheme==purple", () => {
     const wrapper = shallow(<Button colorScheme="purple"/>)
-    expect(wrapper.find('button').hasClass('btn-primary')).toBe(true);
+    expect(wrapper.find("button").hasClass('btn-primary')).toBe(true)
   })
-
-  it("sets has btn-outline-primary when colorScheme==outlinedPurple", () => {
+  it("has class btn-outline-primary when colorScheme==outlinedPurple", () => {
     const wrapper = shallow(<Button colorScheme="outlinedPurple"/>)
-    expect(wrapper.find('button').hasClass('btn-outline-primary')).toBe(true);
+    expect(wrapper.find("button").hasClass('btn-outline-primary')).toBe(true)
   })
-
-  it("sets has btn-outline-gray when colorScheme==gray", () => {
+  it("has class btn-outline-gray when colorScheme==gray", () => {
     const wrapper = shallow(<Button colorScheme="gray"/>)
-    expect(wrapper.find('button').hasClass('btn-outline-gray')).toBe(true);
+    expect(wrapper.find("button").hasClass('btn-outline-gray')).toBe(true)
   })
-
-  it("sets has btn-outline-white when colorScheme==white", () => {
+  it("has class btn-outline-white when colorScheme==white", () => {
     const wrapper = shallow(<Button colorScheme="white"/>)
-    expect(wrapper.find('button').hasClass('btn-outline-white')).toBe(true);
+    expect(wrapper.find("button").hasClass('btn-outline-white')).toBe(true)
   })
-
-  it("sets has btn-light-purple when colorScheme==light-purple", () => {
+  it("has class btn-light-purple when colorScheme==light-purple", () => {
     const wrapper = shallow(<Button colorScheme="light-purple"/>)
-    expect(wrapper.find('button').hasClass('btn-light-purple')).toBe(true);
+    expect(wrapper.find("button").hasClass('btn-light-purple')).toBe(true)
   })
-
-  it("sets has btn-primary when colorScheme is not set", () => {
+  it("has class btn-primary when colorScheme is not set", () => {
     const wrapper = shallow(<Button />)
-    expect(wrapper.find('button').hasClass('btn-primary')).toBe(true);
+    expect(wrapper.find("button").hasClass('btn-primary')).toBe(true)
   })
 })
 
 describe("Test handleOnClick", () => {
-  // handleOnClick
-  it("triggers handleOnClick if handleOnClick is set", () => {
+  it("triggers onClick if onClick is set", () => {
     let counter = 0
-    const wrapper = shallow(<Button onClick={() => {counter++}} />)
-    expect(counter).toBe(0)
+    const wrapper = shallow(<Button onClick={() => counter++}/>)
     wrapper.simulate("click")
     expect(counter).toBe(1)
   })
 
-  it("do not trigger handleOnClick if disabled is true", () => {
+  it("does not trigger onClick if disabled is set", () => {
     let counter = 0
-    const wrapper = shallow(<Button disabled onClick={() => {counter++}} />)
-    expect(counter).toBe(0)
+    const wrapper = shallow(<Button disabled onClick={() => counter++}/>)
     wrapper.simulate("click")
     expect(counter).toBe(0)
   })
 })
 
 describe("Test renderButton", () => {
-
-
-  // Test renderButton
-  it("renders default classNames", () => {
+  it("renders default classes", () => {
     const wrapper = shallow(<Button />)
-    expect(wrapper.find('button').hasClass("button-component")).toBe(true)
-    expect(wrapper.find('button').hasClass("btn")).toBe(true)
+    expect(wrapper.find("button").hasClass('button-component')).toBe(true)
+    expect(wrapper.find("button").hasClass('btn')).toBe(true)
   })
-
-  it("renders btn-block if fullWidth==true", () => {
+  it("renders btn-block if fullWidth is set", () => {
     const wrapper = shallow(<Button fullWidth />)
-    expect(wrapper.find('button').hasClass("btn-block")).toBe(true)
+    expect(wrapper.find("button").hasClass('btn-block')).toBe(true)
   })
-
-  it("does not render btn-block if fullWidth is not set", () => {
-    const wrapper = shallow(<Button />)
-    expect(wrapper.find('button').hasClass("btn-block")).not.toBe(true)
-  })
-
-  it("renders custom classNames ", () => {
+  it("renders classnames correctly", () => {
     const wrapper = shallow(<Button className="foo" />)
-    expect(wrapper.find('button').hasClass("foo")).toBe(true)
+    expect(wrapper.find("button").hasClass('foo')).toBe(true)
   })
-
-  it("has attribute disabled if disabled is set", () => {
+  it("sets disabled prop correctly", () => {
     const wrapper = shallow(<Button disabled />)
-    expect(wrapper.find('button').prop("disabled")).toBe(true)
+    expect(wrapper.find("button").prop('disabled')).toBe(true)
   })
-
-  it("p tag contains default classess", () => {
+  it("p tag contains default classes", () => {
     const wrapper = shallow(<Button />)
-    expect(wrapper.find('button p').hasClass("m-0")).toBe(true)
-    expect(wrapper.find('button p').hasClass("text-wrap")).toBe(true)
+    expect(wrapper.find("button p").hasClass('m-0')).toBe(true)
+    expect(wrapper.find("button p").hasClass('text-wrap')).toBe(true)
   })
 })
+
 
 describe("Test Strings", () => {
-  // Test strings
-  it("renders prepend", () => {
+  it("renders prepend correctly", () => {
     const wrapper = shallow(<Button prepend="prepend"/>)
-    expect(wrapper.find('button').text()).toContain("prepend")
+    expect(wrapper.find("button").text()).toContain("prepend")
   })
-
-  it("renders title", () => {
+  it("renders title correctly", () => {
     const wrapper = shallow(<Button title="title"/>)
-    expect(wrapper.find('button').text()).toContain("title")
+    expect(wrapper.find("button").text()).toContain("title")
   })
-
-  it("renders subtitle", () => {
+  it("renders subtitle correctly", () => {
     const wrapper = shallow(<Button subtitle="subtitle"/>)
-    expect(wrapper.find('button').text()).toContain("subtitle")
+    expect(wrapper.find("button span.subtitle").text()).toContain("subtitle")
   })
-
-  it("renders append", () => {
+  it("renders append correctly", () => {
     const wrapper = shallow(<Button append="append"/>)
-    expect(wrapper.find('button').text()).toContain("append")
+    expect(wrapper.find("button").text()).toContain("append")
   })
 })
 
-describe("Test nextLink", () => {
-  // Test nextLink
-  it("renders next Link", () => {
-    const wrapper = shallow(<Button nextLink="/nextLink"/>)
-    expect(wrapper.find("Link").prop("to")).toBe("/nextLink")
+describe("Test renderComponent", () => {
+  it("renders Link when nextLink is set", () => {
+    const wrapper = shallow(<Button nextLink="/login"/>)
+    expect(wrapper.find("Link").prop("to")).toBe("/login")
+  })
+  it("renders Link but not nextLink when disabled is set", () => {
+    const wrapper = shallow(<Button disabled nextLink="/login"/>)
+    expect(wrapper.find("Link").prop("to")).not.toBe("/login")
   })
 })
 
