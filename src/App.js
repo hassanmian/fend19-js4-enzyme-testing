@@ -1,25 +1,18 @@
+import { useState } from 'react'
 import logo from './logo.svg';
 import './App.css';
-import Heading from './components/Heading';
+import Button from './components/Button';
 
 function App() {
+  const [counter, setCounter] = useState(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <Heading heading="Hello" />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <h1>Welcome</h1>
+     <div className="counter">{counter}</div>
+     <button className="increment" onClick={() => setCounter(counter + 1)}>Increment</button>
+     <button className="decrement" onClick={() => setCounter(counter - 1)}>Decrement</button>
+
+     <Button prepend="Pre" title="Hello" append="Append" subtitle="Sub" />
     </div>
   );
 }
