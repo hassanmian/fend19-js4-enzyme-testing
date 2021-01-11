@@ -101,8 +101,6 @@ describe("Test renderButton", () => {
 })
 
 describe("Test Strings", () => {
-
-
   // Test strings
   it("renders prepend", () => {
     const wrapper = shallow(<Button prepend="prepend"/>)
