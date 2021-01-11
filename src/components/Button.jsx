@@ -72,7 +72,7 @@ export default function Button({
 
   function renderComponent() {
     if (nextLink) {
-      return <Link to={!disabled && nextLink}>{renderButton()}</Link>
+      return <Link to={!disabled ? nextLink : "" }>{renderButton()}</Link>
     } else {
       return renderButton()
     }
